@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moana Baby</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif; }
+  body { background-color:#fff8f2; color:#333; }
+  header { background-color:#f7e8d0; padding:20px; text-align:center; }
+  header h1 { color:#e07b7b; }
+  nav a { margin:0 10px; text-decoration:none; color:#6b8e8e; font-weight:bold; }
+  .hero { text-align:center; padding:50px; background-color:#fbe7d6; }
+  .hero h2 { color:#e07b7b; }
+  .hero p { color:#6b8e8e; }
+  .products { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:40px; }
+  .product { background:#fff; padding:20px; border-radius:15px; width:250px; box-shadow:0 5px 15px rgba(0,0,0,0.1); text-align:center; cursor:pointer; }
+  .product img { width:100%; border-radius:10px; margin-bottom:15px; }
+  .product h3 { color:#e07b7b; margin-bottom:10px; }
+  .product p { color:#6b8e8e; margin-bottom:15px; }
+  .product button { background:#e07b7b; color:#fff; border:none; padding:10px 20px; border-radius:10px; cursor:pointer; }
+  .product button:hover { background:#d16666; }
+  .cart { position:fixed; top:20px; right:20px; background:#f7e8d0; padding:15px; border-radius:10px; width:250px; max-height:80vh; overflow-y:auto; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+  .cart h3 { color:#e07b7b; margin-bottom:10px; }
+  .cart-item { display:flex; justify-content:space-between; margin-bottom:10px; }
+  .cart-total { font-weight:bold; margin-top:10px; }
+  .about, .contact, .checkout, .product-detail { padding:50px 20px; text-align:center; }
+  .about { background-color:#fdf1e6; }
+  .about h2, .contact h2, .checkout h2, .product-detail h2 { color:#e07b7b; margin-bottom:15px; }
+  .about p, .contact p, .product-detail p { color:#6b8e8e; max-width:700px; margin:0 auto 15px auto; line-height:1.6; }
+  .contact form, .checkout form { max-width:400px; margin:0 auto; display:flex; flex-direction:column; gap:15px; }
+  .contact input, .contact textarea, .checkout input { padding:10px; border-radius:10px; border:1px solid #ccc; }
+  .contact button, .checkout button { background:#e07b7b; color:#fff; border:none; padding:10px; border-radius:10px; cursor:pointer; }
+  footer { text-align:center; padding:20px; background:#f7e8d0; color:#6b8e8e; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+
+
+<header>
+  <h1>Moana Baby</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#shop">Shop</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+
+<section class="hero" id="home">
+  <h2>Pacific Inspired Baby Essentials</h2>
+  <p>Soft, culturally inspired products for your little one.</p>
+</section>
+
+
+<section class="products" id="shop">
+  <div class="product" data-name="Tongan Baby Bottle" data-price="25" data-description="Pacific-inspired design, BPA free, 260ml." data-image="images/tongan-bottle.png">
+    <img src="images/tongan-bottle.png" alt="Tongan Baby Bottle">
+    <h3>Tongan Baby Bottle</h3>
+    <p>Pacific-inspired design, BPA free, 260ml.</p>
+    <button>Add to Cart</button>
+  </div>
+  <div class="product" data-name="Samoan Baby Bottle" data-price="25" data-description="Soft, safe, and beautifully patterned, 260ml." data-image="images/samoan-bottle.png">
+    <img src="images/samoan-bottle.png" alt="Samoan Baby Bottle">
+    <h3>Samoan Baby Bottle</h3>
+    <p>Soft, safe, and beautifully patterned, 260ml.</p>
+    <button>Add to Cart</button>
+  </div>
+  <div class="product" data-name="Māori Baby Bottle" data-price="25" data-description="Traditional Māori-inspired design, 260ml." data-image="images/maori-bottle.png">
+    <img src="images/maori-bottle.png" alt="Māori Baby Bottle">
+    <h3>Māori Baby Bottle</h3>
+    <p>Traditional Māori-inspired design, 260ml.</p>
+    <button>Add to Cart</button>
+  </div>
+</section>
+
+
+<div class="cart" id="cart">
+  <h3>Shopping Cart</h3>
+  <div id="cart-items"></div>
+  <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+  <button id="checkout-btn">Checkout</button>
+</div>
+
+
+<section class="product-detail hidden" id="product-detail">
+  <h2 id="detail-name"></h2>
+  <img id="detail-image" src="" alt="Product" style="width:300px; border-radius:10px; margin-bottom:15px;">
+  <p id="detail-description"></p>
+  <p id="detail-price"></p>
+  <button id="detail-add-cart">Add to Cart</button>
+  <button id="back-to-shop">Back to Shop</button>
+</section>
+
+
+<section class="checkout hidden" id="checkout">
+  <h2>Checkout</h2>
+  <div id="checkout-items"></div>
+  <div class="cart-total">Total: $<span id="checkout-total">0</span></div>
+  <form id="checkout-form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <input type="text" placeholder="Address" required>
+    <button type="submit">Place Order</button>
+  </form>
+  <p id="order-confirmation" class="hidden">Thank you! Your order has been placed.</p>
+</section>
+
+
+<section class="about" id="about">
+  <h2>About Moana Baby</h2>
+  <p>Moana Baby is a Pacific-inspired baby brand celebrating the beauty, culture, and heritage of the islands. Our products are thoughtfully designed for your little one, combining safety, quality, and cultural artistry in every piece.</p>
+</section>
+
+
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+
+<footer>
+  &copy; 2025 Moana Baby | Designed with love from the Pacific
+</footer>
+
+
+<script>
+  const cartItems = document.getElementById('cart-items');
+  const cartTotal = document.getElementById('cart-total');
+  const checkoutItems = document.getElementById('checkout-items');
+  const checkoutTotal = document.getElementById('checkout-total');
+  let cart = [];
+
+  document.querySelectorAll('.product').forEach(product => {
+    product.addEventListener('click', (e) => {
+      if(e.target.tagName !== 'BUTTON') {
+        document.getElementById('shop').classList.add('hidden');
+        document.getElementById('product-detail').classList.remove('hidden');
+        document.getElementById('detail-name').textContent = product.dataset.name;
+        document.getElementById('detail-description').textContent = product.dataset.description;
+        document.getElementById('detail-price').textContent = `Price: $${product.dataset.price}`;
+        document.getElementById('detail-image').src = product.dataset.image;
+
+        document.getElementById('detail-add-cart').onclick = () => { addToCart(product.dataset.name, parseFloat(product.dataset.price)); };
+      }
+    });
+  });
+
+  document.getElementById('back-to-shop').addEventListener('click', () => {
+    document.getElementById('product-detail').classList.add('hidden');
+    document.getElementById('shop').classList.remove('hidden');
+  });
+
+  function addToCart(name, price) {
+    cart.push({ name, price });
+    renderCart();
+    alert(`${name} added to cart!`);
+  }
+
+  document.querySelectorAll('.product button').forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const product = e.target.closest('.product');
+      addToCart(product.dataset.name, parseFloat(product.dataset.price));
+    });
+  });
+
+  function renderCart() {
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.textContent = `${item.name} - $${item.price}`;
+      cartItems.appendChild(div);
+    });
+    cartTotal.textContent = total.toFixed(2);
+  }
+
+  document.getElementById('checkout-btn').addEventListener('click', () => {
+    document.getElementById('checkout').classList.remove('hidden');
+    document.getElementById('shop').classList.add('hidden');
+    checkoutItems.innerHTML = '';
+    cart.forEach(item => {
+      const div = document.createElement('div');
+      div.textContent = `${item.name} - $${item.price}`;
+      checkoutItems.appendChild(div);
+    });
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    checkoutTotal.textContent = total.toFixed(2);
+  });
+
+  document.getElementById('checkout-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('order-confirmation').classList.remove('hidden');
+    cart = [];
+    renderCart();
+  });
+</script>
+
+
+</body>
+</html>
