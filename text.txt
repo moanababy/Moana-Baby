@@ -1,10 +1,19 @@
-moana-baby-website/
-│
-├── index.html        # Main website file (HTML with all pages and JS)
-├── css/
-│   └── styles.css    # Optional if you separate CSS
-├── images/
-│   ├── tongan-bottle.png
-│   ├── samoan-bottle.png
-│   └── maori-bottle.png
-└── README.md         # Optional instructions
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moana Baby</title>
+<style>
+/* Add your CSS here or keep it embedded from the previous code */
+</style>
+</head>
+<body>
+  <header><h1>Moana Baby</h1></header>
+  <section id="shop">Your shop content here with products</section>
+  <!-- Add about, contact, and checkout sections here -->
+  <script>
+  // Add your cart and checkout JS here
+  </script>
+</body>
+</html>
