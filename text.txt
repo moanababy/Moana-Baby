@@ -1,0 +1,10 @@
+moana-baby-website/
+│
+├── index.html        # Main website file (HTML with all pages and JS)
+├── css/
+│   └── styles.css    # Optional if you separate CSS
+├── images/
+│   ├── tongan-bottle.png
+│   ├── samoan-bottle.png
+│   └── maori-bottle.png
+└── README.md         # Optional instructions
